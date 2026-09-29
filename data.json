@@ -69,5 +69,43 @@
         null
       ]
     }
+  },
+  "2026-09-24": {
+    "weekday": 4,
+    "entries": {
+      "Incline Barbell Bench Press": [
+        20,
+        30,
+        40
+      ],
+      "Flat Dumbbell Press": [
+        null,
+        null
+      ],
+      "Pull-Ups (Weighted if needed)": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Barbell Pendlay Rows": [
+        null,
+        null,
+        null
+      ],
+      "Dumbbell Chest Flys": [
+        null,
+        null,
+        null
+      ],
+      "Cable Lat Pullover": [
+        null,
+        null
+      ],
+      "Bar Dips": [
+        null,
+        null
+      ]
+    }
   }
 }
