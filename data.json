@@ -1,1 +1,39 @@
-{}
+{
+  "2026-09-28": {
+    "weekday": 1,
+    "entries": {
+      "Flat Barbell Bench Press": [
+        10,
+        10,
+        10
+      ],
+      "Incline Dumbbell Press": [
+        null,
+        null
+      ],
+      "Overhead Barbell Press": [
+        null,
+        null,
+        null
+      ],
+      "Dumbbell Lateral Raises": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Cable Tricep Pushdowns": [
+        null,
+        null
+      ],
+      "Overhead Tricep Extensions": [
+        null,
+        null
+      ],
+      "Push-Ups": [
+        null,
+        null
+      ]
+    }
+  }
+}
