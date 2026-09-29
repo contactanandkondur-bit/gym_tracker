@@ -1,1 +1,111 @@
-{}
+{
+  "2026-09-28": {
+    "weekday": 1,
+    "entries": {
+      "Flat Barbell Bench Press": [
+        10,
+        10,
+        10
+      ],
+      "Incline Dumbbell Press": [
+        10,
+        10
+      ],
+      "Overhead Barbell Press": [
+        null,
+        null,
+        null
+      ],
+      "Dumbbell Lateral Raises": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Cable Tricep Pushdowns": [
+        null,
+        null
+      ],
+      "Overhead Tricep Extensions": [
+        null,
+        null
+      ],
+      "Push-Ups": [
+        null,
+        null
+      ]
+    }
+  },
+  "2026-09-29": {
+    "weekday": 2,
+    "entries": {
+      "Deadlifts": [
+        10,
+        20,
+        30,
+        null
+      ],
+      "Pull-Ups or Lat Pulldown": [
+        20,
+        20,
+        null
+      ],
+      "Barbell Rows": [
+        null,
+        null,
+        null
+      ],
+      "Face Pulls": [
+        null,
+        null
+      ],
+      "Barbell Bicep Curls": [
+        null,
+        null
+      ],
+      "Incline Dumbbell Curls": [
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "2026-09-24": {
+    "weekday": 4,
+    "entries": {
+      "Incline Barbell Bench Press": [
+        20,
+        30,
+        40
+      ],
+      "Flat Dumbbell Press": [
+        null,
+        null
+      ],
+      "Pull-Ups (Weighted if needed)": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Barbell Pendlay Rows": [
+        null,
+        null,
+        null
+      ],
+      "Dumbbell Chest Flys": [
+        null,
+        null,
+        null
+      ],
+      "Cable Lat Pullover": [
+        null,
+        null
+      ],
+      "Bar Dips": [
+        null,
+        null
+      ]
+    }
+  }
+}
