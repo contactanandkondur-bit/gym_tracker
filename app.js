@@ -1,52 +1,52 @@
-const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const WEEKDAY_LABEL = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTH_LABEL = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 let state = {
   data: {},
   sha: null,
-  selectedWeekday: new Date().getDay(),
+  viewDate: startOfToday(),
   selectedDateKey: null,
 };
 
 function pad(n) { return String(n).padStart(2, "0"); }
 
+function startOfToday() {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 function dateKey(d) {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-function renderDayPicker() {
-  const el = document.getElementById("day-picker");
-  el.innerHTML = "";
-  for (let w = 1; w <= 6; w++) {
-    const btn = document.createElement("button");
-    btn.textContent = DAY_NAMES[w];
-    btn.className = w === state.selectedWeekday ? "active" : "";
-    btn.onclick = () => {
-      state.selectedWeekday = w;
-      renderDayPicker();
-      renderWorkout();
-    };
-    el.appendChild(btn);
-  }
-  const restBtn = document.createElement("button");
-  restBtn.textContent = "Sun";
-  restBtn.className = state.selectedWeekday === 0 ? "active" : "";
-  restBtn.onclick = () => {
-    state.selectedWeekday = 0;
-    renderDayPicker();
-    renderWorkout();
-  };
-  el.appendChild(restBtn);
+function isSameDay(a, b) {
+  return dateKey(a) === dateKey(b);
+}
+
+function formatDateLabel(d) {
+  return `${WEEKDAY_LABEL[d.getDay()]}, ${MONTH_LABEL[d.getMonth()]} ${d.getDate()}`;
+}
+
+function renderDateNav() {
+  const today = startOfToday();
+  const isToday = isSameDay(state.viewDate, today);
+
+  document.getElementById("date-label").textContent =
+    (isToday ? "Today · " : "") + formatDateLabel(state.viewDate);
+  document.getElementById("today-btn").style.display = isToday ? "none" : "inline";
+  document.getElementById("next-day").disabled = state.viewDate >= today;
 }
 
 function renderWorkout() {
-  const workout = WORKOUTS[state.selectedWeekday];
-  // Always log against today's real date, regardless of which day's template is picked.
-  state.selectedDateKey = dateKey(new Date());
-  const isDefaultDay = state.selectedWeekday === new Date().getDay();
+  const weekday = state.viewDate.getDay();
+  const workout = WORKOUTS[weekday];
+  state.selectedDateKey = dateKey(state.viewDate);
+
+  renderDateNav();
 
   document.getElementById("day-title").innerHTML = `
     <h2>${workout.day} – ${workout.title}</h2>
-    <p>${isDefaultDay ? "Today" : `Logging as today (${state.selectedDateKey})`}</p>
   `;
 
   const listEl = document.getElementById("exercise-list");
@@ -69,7 +69,7 @@ function renderWorkout() {
 
     let setsHtml = "";
     for (let i = 0; i < ex.sets; i++) {
-      const val = savedSets[i] !== undefined ? savedSets[i] : "";
+      const val = savedSets[i] !== undefined && savedSets[i] !== null ? savedSets[i] : "";
       setsHtml += `
         <div class="set-input">
           <label>Set ${i + 1}</label>
@@ -88,8 +88,22 @@ function renderWorkout() {
   });
 }
 
+function changeDay(delta) {
+  const d = new Date(state.viewDate);
+  d.setDate(d.getDate() + delta);
+  if (d > startOfToday()) return; // can't log future days
+  state.viewDate = d;
+  renderWorkout();
+}
+
+function jumpToToday() {
+  state.viewDate = startOfToday();
+  renderWorkout();
+}
+
 function collectEntries() {
-  const workout = WORKOUTS[state.selectedWeekday];
+  const weekday = state.viewDate.getDay();
+  const workout = WORKOUTS[weekday];
   const entries = {};
   workout.exercises.forEach((ex) => {
     const values = [];
@@ -129,7 +143,7 @@ async function saveWorkout() {
   try {
     const entries = collectEntries();
     state.data[state.selectedDateKey] = {
-      weekday: state.selectedWeekday,
+      weekday: state.viewDate.getDay(),
       entries,
     };
     const sha = await saveDataFile(state.data, state.sha, `Log workout ${state.selectedDateKey}`);
@@ -144,8 +158,10 @@ async function saveWorkout() {
 
 document.getElementById("settings-btn").onclick = () => openSettingsModal(loadData);
 document.getElementById("save-btn").onclick = saveWorkout;
+document.getElementById("prev-day").onclick = () => changeDay(-1);
+document.getElementById("next-day").onclick = () => changeDay(1);
+document.getElementById("today-btn").onclick = jumpToToday;
 
-renderDayPicker();
 if (hasSettings()) {
   loadData();
 } else {

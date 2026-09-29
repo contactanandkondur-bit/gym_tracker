@@ -17,11 +17,18 @@
   </header>
 
   <main>
-    <div class="day-picker" id="day-picker"></div>
+    <div class="date-nav">
+      <button id="prev-day" aria-label="Previous day">◀</button>
+      <div class="date-nav-center">
+        <div id="date-label"></div>
+        <button id="today-btn" style="display:none">Jump to today</button>
+      </div>
+      <button id="next-day" aria-label="Next day">▶</button>
+    </div>
     <div class="day-title" id="day-title"></div>
     <div id="exercise-list"></div>
     <div class="save-bar" id="save-bar" style="display:none">
-      <button class="save-btn" id="save-btn">Save Today's Workout</button>
+      <button class="save-btn" id="save-btn">Save Workout</button>
       <div class="status" id="status"></div>
     </div>
   </main>
