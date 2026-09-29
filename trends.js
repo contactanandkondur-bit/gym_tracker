@@ -103,11 +103,5 @@ async function loadAndRender() {
   if (sel.options.length > 0) renderChart(sel.value);
 }
 
-document.getElementById("settings-btn").onclick = () => openSettingsModal(loadAndRender);
-
 populateSelect();
-if (hasSettings()) {
-  loadAndRender();
-} else {
-  openSettingsModal(loadAndRender);
-}
+loadAndRender();

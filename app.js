@@ -3,7 +3,6 @@ const MONTH_LABEL = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"
 
 let state = {
   data: {},
-  sha: null,
   viewDate: startOfToday(),
   selectedDateKey: null,
 };
@@ -126,12 +125,11 @@ function setStatus(msg, cls) {
 async function loadData() {
   setStatus("Loading...");
   try {
-    const { data, sha } = await fetchDataFile();
+    const { data } = await fetchDataFile();
     state.data = data;
-    state.sha = sha;
     setStatus("");
   } catch (e) {
-    setStatus("Could not load data from GitHub: " + e.message, "err");
+    setStatus("Could not load data: " + e.message, "err");
   }
   renderWorkout();
 }
@@ -146,8 +144,7 @@ async function saveWorkout() {
       weekday: state.viewDate.getDay(),
       entries,
     };
-    const sha = await saveDataFile(state.data, state.sha, `Log workout ${state.selectedDateKey}`);
-    state.sha = sha;
+    await saveDataFile(state.data);
     setStatus("Saved ✓", "ok");
   } catch (e) {
     setStatus("Save failed: " + e.message, "err");
@@ -156,15 +153,9 @@ async function saveWorkout() {
   }
 }
 
-document.getElementById("settings-btn").onclick = () => openSettingsModal(loadData);
 document.getElementById("save-btn").onclick = saveWorkout;
 document.getElementById("prev-day").onclick = () => changeDay(-1);
 document.getElementById("next-day").onclick = () => changeDay(1);
 document.getElementById("today-btn").onclick = jumpToToday;
 
-if (hasSettings()) {
-  loadData();
-} else {
-  renderWorkout();
-  openSettingsModal(loadData);
-}
+loadData();
