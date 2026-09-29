@@ -13,14 +13,6 @@ function dateKey(d) {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-// Most recent date (<=today) that falls on the given weekday (0=Sun..6=Sat).
-function mostRecentDateForWeekday(weekday) {
-  const d = new Date();
-  const diff = (d.getDay() - weekday + 7) % 7;
-  d.setDate(d.getDate() - diff);
-  return d;
-}
-
 function renderDayPicker() {
   const el = document.getElementById("day-picker");
   el.innerHTML = "";
@@ -48,13 +40,13 @@ function renderDayPicker() {
 
 function renderWorkout() {
   const workout = WORKOUTS[state.selectedWeekday];
-  const dateObj = mostRecentDateForWeekday(state.selectedWeekday);
-  state.selectedDateKey = dateKey(dateObj);
-  const isToday = state.selectedDateKey === dateKey(new Date());
+  // Always log against today's real date, regardless of which day's template is picked.
+  state.selectedDateKey = dateKey(new Date());
+  const isDefaultDay = state.selectedWeekday === new Date().getDay();
 
   document.getElementById("day-title").innerHTML = `
     <h2>${workout.day} – ${workout.title}</h2>
-    <p>${isToday ? "Today" : state.selectedDateKey}</p>
+    <p>${isDefaultDay ? "Today" : `Logging as today (${state.selectedDateKey})`}</p>
   `;
 
   const listEl = document.getElementById("exercise-list");
