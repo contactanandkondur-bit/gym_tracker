@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gym Log</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🏋️ Gym Log</h1>
+    <nav>
+      <a href="index.html" class="active">Log</a>
+      <a href="trends.html">Trends</a>
+      <button id="settings-btn">⚙️</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="day-picker" id="day-picker"></div>
+    <div class="day-title" id="day-title"></div>
+    <div id="exercise-list"></div>
+    <div class="save-bar" id="save-bar" style="display:none">
+      <button class="save-btn" id="save-btn">Save Today's Workout</button>
+      <div class="status" id="status"></div>
+    </div>
+  </main>
+
+  <script src="workouts.js"></script>
+  <script src="github.js"></script>
+  <script src="settings.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

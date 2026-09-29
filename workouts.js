@@ -1,0 +1,85 @@
+// Fixed weekly workout template. "sets" = number of weight inputs to show.
+const WORKOUTS = {
+  1: {
+    day: "Monday",
+    title: "Push (Chest, Shoulders, Triceps)",
+    exercises: [
+      { name: "Flat Barbell Bench Press", sets: 3, reps: "8-10" },
+      { name: "Incline Dumbbell Press", sets: 2, reps: "8-10" },
+      { name: "Overhead Barbell Press", sets: 3, reps: "8-10" },
+      { name: "Dumbbell Lateral Raises", sets: 4, reps: "12-15" },
+      { name: "Cable Tricep Pushdowns", sets: 2, reps: "10-12" },
+      { name: "Overhead Tricep Extensions", sets: 2, reps: "10-12" },
+      { name: "Push-Ups", sets: 2, reps: "Failure" },
+    ],
+  },
+  2: {
+    day: "Tuesday",
+    title: "Pull (Back, Biceps, Rear Delts)",
+    exercises: [
+      { name: "Deadlifts", sets: 4, reps: "6-8" },
+      { name: "Pull-Ups or Lat Pulldown", sets: 3, reps: "8-10" },
+      { name: "Barbell Rows", sets: 3, reps: "8-10" },
+      { name: "Face Pulls", sets: 2, reps: "12-15" },
+      { name: "Barbell Bicep Curls", sets: 2, reps: "10-12" },
+      { name: "Incline Dumbbell Curls", sets: 3, reps: "8-10" },
+    ],
+  },
+  3: {
+    day: "Wednesday",
+    title: "Legs + Core (Quads, Hams, Core)",
+    exercises: [
+      { name: "Back Squats", sets: 4, reps: "8-10" },
+      { name: "Romanian Deadlifts", sets: 3, reps: "8-10" },
+      { name: "Leg Press", sets: 2, reps: "12-15" },
+      { name: "Walking Lunges", sets: 3, reps: "12-15/leg" },
+      { name: "Hanging Leg Raises", sets: 4, reps: "15-20" },
+      { name: "Plank with Side Twists", sets: 3, reps: "20 twists" },
+    ],
+  },
+  4: {
+    day: "Thursday",
+    title: "Chest + Back (Upper Body Focus)",
+    exercises: [
+      { name: "Incline Barbell Bench Press", sets: 3, reps: "8-10" },
+      { name: "Flat Dumbbell Press", sets: 2, reps: "8-10" },
+      { name: "Pull-Ups (Weighted if needed)", sets: 4, reps: "8-10" },
+      { name: "Barbell Pendlay Rows", sets: 3, reps: "8-10" },
+      { name: "Dumbbell Chest Flys", sets: 3, reps: "12-15" },
+      { name: "Cable Lat Pullover", sets: 2, reps: "10-12" },
+      { name: "Bar Dips", sets: 2, reps: "Failure" },
+    ],
+  },
+  5: {
+    day: "Friday",
+    title: "Full Arms + Shoulders",
+    exercises: [
+      { name: "Cable Tricep Pushdown", sets: 3, reps: "8-10" },
+      { name: "Skull Crushers (EZ Bar)", sets: 3, reps: "10-12" },
+      { name: "Preacher Curls", sets: 2, reps: "10-12" },
+      { name: "Incline Dumbbell Curls", sets: 2, reps: "8-10" },
+      { name: "Hammer Curls", sets: 2, reps: "10-12" },
+      { name: "Dumbbell Lateral Raises", sets: 4, reps: "12-15" },
+      { name: "Face Pulls", sets: 3, reps: "12-15" },
+    ],
+  },
+  6: {
+    day: "Saturday",
+    title: "Legs + Core (Lower Body + Core)",
+    exercises: [
+      { name: "Front Squats", sets: 3, reps: "8-10" },
+      { name: "Bulgarian Split Squats", sets: 3, reps: "12-15/leg" },
+      { name: "Leg Extension (Machine)", sets: 2, reps: "12-15" },
+      { name: "Hamstring Curls (Machine)", sets: 3, reps: "10-12" },
+      { name: "Standing Calf Raises", sets: 4, reps: "15-20" },
+      { name: "Seated Calf Raises", sets: 4, reps: "15-20" },
+      { name: "Cable Woodchoppers", sets: 3, reps: "15/side" },
+      { name: "Weighted Decline Sit-Ups", sets: 3, reps: "15-20" },
+    ],
+  },
+  0: {
+    day: "Sunday",
+    title: "Rest",
+    exercises: [],
+  },
+};

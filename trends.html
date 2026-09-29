@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gym Trends</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📈 Trends</h1>
+    <nav>
+      <a href="index.html">Log</a>
+      <a href="trends.html" class="active">Trends</a>
+      <button id="settings-btn">⚙️</button>
+    </nav>
+  </header>
+
+  <main>
+    <select id="exercise-select"></select>
+    <div class="chart-wrap">
+      <canvas id="chart" height="260"></canvas>
+    </div>
+    <div id="empty" class="empty-state" style="display:none">No data logged for this exercise yet.</div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+  <script src="workouts.js"></script>
+  <script src="github.js"></script>
+  <script src="settings.js"></script>
+  <script src="trends.js"></script>
+</body>
+</html>
