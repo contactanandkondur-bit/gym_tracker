@@ -40,14 +40,14 @@
     "weekday": 2,
     "entries": {
       "Deadlifts": [
-        10,
-        20,
-        30,
+        null,
+        null,
+        null,
         null
       ],
       "Pull-Ups or Lat Pulldown": [
-        20,
-        20,
+        null,
+        0,
         null
       ],
       "Barbell Rows": [
