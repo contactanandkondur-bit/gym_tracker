@@ -35,5 +35,39 @@
         null
       ]
     }
+  },
+  "2026-09-29": {
+    "weekday": 2,
+    "entries": {
+      "Deadlifts": [
+        10,
+        20,
+        30,
+        null
+      ],
+      "Pull-Ups or Lat Pulldown": [
+        20,
+        20,
+        null
+      ],
+      "Barbell Rows": [
+        null,
+        null,
+        null
+      ],
+      "Face Pulls": [
+        null,
+        null
+      ],
+      "Barbell Bicep Curls": [
+        null,
+        null
+      ],
+      "Incline Dumbbell Curls": [
+        null,
+        null,
+        null
+      ]
+    }
   }
 }
