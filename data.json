@@ -256,5 +256,43 @@
         null
       ]
     }
+  },
+  "2026-10-02": {
+    "weekday": 5,
+    "entries": {
+      "Cable Tricep Pushdown": [
+        40,
+        35,
+        45
+      ],
+      "Skull Crushers (EZ Bar)": [
+        5,
+        5,
+        5
+      ],
+      "Preacher Curls": [
+        null,
+        null
+      ],
+      "Incline Dumbbell Curls": [
+        null,
+        null
+      ],
+      "Hammer Curls": [
+        null,
+        null
+      ],
+      "Dumbbell Lateral Raises": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Face Pulls": [
+        null,
+        null,
+        null
+      ]
+    }
   }
 }
