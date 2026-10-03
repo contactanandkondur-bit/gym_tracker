@@ -294,5 +294,51 @@
         30
       ]
     }
+  },
+  "2026-10-03": {
+    "weekday": 6,
+    "entries": {
+      "Front Squats": [
+        null,
+        null,
+        null
+      ],
+      "Bulgarian Split Squats": [
+        null,
+        null,
+        null
+      ],
+      "Leg Extension (Machine)": [
+        30,
+        35
+      ],
+      "Hamstring Curls (Machine)": [
+        null,
+        null,
+        null
+      ],
+      "Standing Calf Raises": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Seated Calf Raises": [
+        15,
+        15,
+        15,
+        15
+      ],
+      "Cable Woodchoppers": [
+        null,
+        null,
+        null
+      ],
+      "Weighted Decline Sit-Ups": [
+        null,
+        null,
+        null
+      ]
+    }
   }
 }
