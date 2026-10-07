@@ -93,12 +93,12 @@ function renderWorkout() {
     for (let i = 0; i < ex.sets; i++) {
       const val = savedSets[i] !== undefined && savedSets[i] !== null ? savedSets[i] : "";
       const lastVal = lastSets && lastSets[i] !== undefined && lastSets[i] !== null ? lastSets[i] : null;
-      const placeholder = lastVal !== null ? `Last: ${lastVal}` : "lb/kg";
       setsHtml += `
         <div class="set-input">
           <label>Set ${i + 1}</label>
+          ${lastVal !== null ? `<div class="last-hint">Last ${lastVal}</div>` : ""}
           <input type="number" inputmode="decimal" step="0.5" min="0"
-            data-exercise="${ex.name}" data-set="${i}" value="${val}" placeholder="${placeholder}" />
+            data-exercise="${ex.name}" data-set="${i}" value="${val}" placeholder="lb/kg" />
         </div>
       `;
     }

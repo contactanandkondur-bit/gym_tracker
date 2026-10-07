@@ -154,6 +154,12 @@ main {
   color: var(--muted);
 }
 
+.last-hint {
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .set-input input {
   width: 60px;
   padding: 8px 6px;
