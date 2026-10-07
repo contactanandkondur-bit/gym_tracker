@@ -17,7 +17,7 @@ const WORKOUTS = {
     day: "Tuesday",
     title: "Pull (Back, Biceps, Rear Delts)",
     exercises: [
-      { name: "Deadlifts", sets: 4, reps: "6-8" },
+      { name: "Leg Press", sets: 4, reps: "10-12" },
       { name: "Pull-Ups or Lat Pulldown", sets: 3, reps: "8-10" },
       { name: "Barbell Rows", sets: 3, reps: "8-10" },
       { name: "Face Pulls", sets: 2, reps: "12-15" },
@@ -30,7 +30,7 @@ const WORKOUTS = {
     title: "Legs + Core (Quads, Hams, Core)",
     exercises: [
       { name: "Back Squats", sets: 4, reps: "8-10" },
-      { name: "Romanian Deadlifts", sets: 3, reps: "8-10" },
+      { name: "Hamstring Curls (Machine)", sets: 3, reps: "10-12" },
       { name: "Leg Press", sets: 2, reps: "12-15" },
       { name: "Walking Lunges", sets: 3, reps: "12-15/leg" },
       { name: "Hanging Leg Raises", sets: 4, reps: "15-20" },
@@ -44,10 +44,10 @@ const WORKOUTS = {
       { name: "Incline Barbell Bench Press", sets: 3, reps: "8-10" },
       { name: "Flat Dumbbell Press", sets: 2, reps: "8-10" },
       { name: "Pull-Ups (Weighted if needed)", sets: 4, reps: "8-10" },
-      { name: "Barbell Pendlay Rows", sets: 3, reps: "8-10" },
+      { name: "Seated Cable Row", sets: 3, reps: "8-10" },
       { name: "Dumbbell Chest Flys", sets: 3, reps: "12-15" },
       { name: "Cable Lat Pullover", sets: 2, reps: "10-12" },
-      { name: "Bar Dips", sets: 2, reps: "Failure" },
+      { name: "Machine Chest Press", sets: 3, reps: "8-10" },
     ],
   },
   5: {
