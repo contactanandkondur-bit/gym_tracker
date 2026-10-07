@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Health</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🩺 Health</h1>
+    <nav>
+      <a href="index.html">Log</a>
+      <a href="trends.html">Trends</a>
+      <a href="health.html" class="active">Health</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="exercise-card">
+      <h3>Body composition entry</h3>
+      <label for="h-date">Date</label>
+      <input type="date" id="h-date" />
+      <div class="health-grid">
+        <div class="field">
+          <label for="h-weight">Weight (kg)</label>
+          <input type="number" step="0.1" id="h-weight" placeholder="e.g. 94.5" />
+        </div>
+        <div class="field">
+          <label for="h-smm">Skeletal Muscle Mass (kg)</label>
+          <input type="number" step="0.1" id="h-smm" placeholder="e.g. 33.8" />
+        </div>
+        <div class="field">
+          <label for="h-fatmass">Fat Mass (kg)</label>
+          <input type="number" step="0.1" id="h-fatmass" placeholder="e.g. 33.4" />
+        </div>
+        <div class="field">
+          <label for="h-bodyfat">Body Fat %</label>
+          <input type="number" step="0.1" id="h-bodyfat" placeholder="e.g. 35.3" />
+        </div>
+        <div class="field">
+          <label for="h-bmi">BMI</label>
+          <input type="number" step="0.1" id="h-bmi" placeholder="e.g. 31.2" />
+        </div>
+        <div class="field">
+          <label for="h-whr">Waist-to-Hip Ratio</label>
+          <input type="number" step="0.01" id="h-whr" placeholder="e.g. 0.98" />
+        </div>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="save-btn" id="save-btn">Save Entry</button>
+      <div class="status" id="status"></div>
+    </div>
+
+    <select id="metric-select">
+      <option value="weight">Weight (kg)</option>
+      <option value="smm">Skeletal Muscle Mass (kg)</option>
+      <option value="fatMass">Fat Mass (kg)</option>
+      <option value="bodyFatPct">Body Fat %</option>
+      <option value="bmi">BMI</option>
+      <option value="whr">Waist-to-Hip Ratio</option>
+    </select>
+    <div class="chart-wrap">
+      <canvas id="chart" height="260"></canvas>
+    </div>
+    <div id="empty" class="empty-state" style="display:none">No health entries logged yet.</div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+  <script src="health.js"></script>
+</body>
+</html>

@@ -211,6 +211,35 @@ main {
   font-size: 16px;
 }
 
+.health-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.health-grid .field label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.health-grid .field input,
+#h-date {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0d0f14;
+  color: var(--text);
+  font-size: 15px;
+}
+
+#h-date {
+  margin-top: 4px;
+}
+
 select {
   width: 100%;
   padding: 12px;
