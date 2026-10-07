@@ -47,7 +47,7 @@
       ],
       "Pull-Ups or Lat Pulldown": [
         null,
-        0,
+        null,
         null
       ],
       "Barbell Rows": [
@@ -216,6 +216,199 @@
       "Push-Ups": [
         null,
         null
+      ]
+    }
+  },
+  "2026-10-01": {
+    "weekday": 4,
+    "entries": {
+      "Incline Barbell Bench Press": [
+        15,
+        20,
+        20
+      ],
+      "Flat Dumbbell Press": [
+        10,
+        10
+      ],
+      "Pull-Ups (Weighted if needed)": [
+        75,
+        65,
+        65,
+        65
+      ],
+      "Barbell Pendlay Rows": [
+        39,
+        45,
+        45
+      ],
+      "Dumbbell Chest Flys": [
+        5,
+        7.5,
+        7.5
+      ],
+      "Cable Lat Pullover": [
+        25,
+        30
+      ],
+      "Bar Dips": [
+        null,
+        null
+      ]
+    }
+  },
+  "2026-10-02": {
+    "weekday": 5,
+    "entries": {
+      "Cable Tricep Pushdown": [
+        40,
+        35,
+        45
+      ],
+      "Skull Crushers (EZ Bar)": [
+        5,
+        5,
+        5
+      ],
+      "Preacher Curls": [
+        5,
+        5
+      ],
+      "Incline Dumbbell Curls": [
+        5,
+        5
+      ],
+      "Hammer Curls": [
+        7.5,
+        5
+      ],
+      "Dumbbell Lateral Raises": [
+        2.5,
+        5,
+        5,
+        2.5
+      ],
+      "Face Pulls": [
+        30,
+        30,
+        30
+      ]
+    }
+  },
+  "2026-10-03": {
+    "weekday": 6,
+    "entries": {
+      "Front Squats": [
+        null,
+        null,
+        null
+      ],
+      "Bulgarian Split Squats": [
+        null,
+        null,
+        null
+      ],
+      "Leg Extension (Machine)": [
+        30,
+        35
+      ],
+      "Hamstring Curls (Machine)": [
+        null,
+        null,
+        null
+      ],
+      "Standing Calf Raises": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Seated Calf Raises": [
+        15,
+        15,
+        15,
+        15
+      ],
+      "Cable Woodchoppers": [
+        10,
+        20,
+        20
+      ],
+      "Weighted Decline Sit-Ups": [
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "2026-10-05": {
+    "weekday": 1,
+    "entries": {
+      "Flat Barbell Bench Press": [
+        10,
+        12.5,
+        12.5
+      ],
+      "Incline Dumbbell Press": [
+        10,
+        12.5
+      ],
+      "Overhead Barbell Press": [
+        0,
+        2.5,
+        0
+      ],
+      "Dumbbell Lateral Raises": [
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "Cable Tricep Pushdowns": [
+        35,
+        40
+      ],
+      "Overhead Tricep Extensions": [
+        15,
+        20
+      ],
+      "Push-Ups": [
+        5,
+        0
+      ]
+    }
+  },
+  "2026-10-06": {
+    "weekday": 2,
+    "entries": {
+      "Deadlifts": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Pull-Ups or Lat Pulldown": [
+        25,
+        35,
+        35
+      ],
+      "Barbell Rows": [
+        10,
+        10,
+        10
+      ],
+      "Face Pulls": [
+        35,
+        40
+      ],
+      "Barbell Bicep Curls": [
+        2.5,
+        5
+      ],
+      "Incline Dumbbell Curls": [
+        5,
+        5,
+        5
       ]
     }
   }
