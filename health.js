@@ -38,6 +38,34 @@ function loadFormForDate(dateStr) {
     const v = entry[key];
     document.getElementById(id).value = v !== undefined && v !== null ? v : "";
   });
+  renderDelta(dateStr);
+}
+
+// Most recent entry strictly before dateStr, or null.
+function findPrevHealthEntry(dateStr) {
+  const dates = Object.keys(healthData).filter((d) => d < dateStr).sort();
+  if (dates.length === 0) return null;
+  const prevDate = dates[dates.length - 1];
+  return { date: prevDate, entry: healthData[prevDate] };
+}
+
+function renderDelta(dateStr) {
+  const deltaEl = document.getElementById("delta-info");
+  const prev = findPrevHealthEntry(dateStr);
+  const current = healthData[dateStr];
+  if (!prev || !current) {
+    deltaEl.textContent = "";
+    return;
+  }
+  const lines = FIELDS.map(({ key }) => {
+    const curV = current[key];
+    const prevV = prev.entry[key];
+    if (curV === null || curV === undefined || prevV === null || prevV === undefined) return null;
+    const diff = Math.round((curV - prevV) * 100) / 100;
+    const sign = diff > 0 ? "+" : "";
+    return `${METRIC_LABEL[key]}: ${sign}${diff} since ${prev.date}`;
+  }).filter(Boolean);
+  deltaEl.innerHTML = lines.join("<br>");
 }
 
 function collectForm() {
@@ -125,6 +153,7 @@ async function saveEntry() {
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
     setStatus("Saved ✓", "ok");
     renderChart(document.getElementById("metric-select").value);
+    renderDelta(dateStr);
   } catch (e) {
     setStatus("Save failed: " + e.message, "err");
   } finally {
@@ -139,4 +168,4 @@ dateInput.onchange = () => loadFormForDate(dateInput.value);
 document.getElementById("save-btn").onclick = saveEntry;
 document.getElementById("metric-select").onchange = () => renderChart(document.getElementById("metric-select").value);
 
-loadAll();
+window.onUnlock = loadAll;

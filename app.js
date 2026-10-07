@@ -3,6 +3,7 @@ const MONTH_LABEL = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"
 
 let state = {
   data: {},
+  healthData: {},
   viewDate: startOfToday(),
   selectedDateKey: null,
 };
@@ -37,6 +38,17 @@ function renderDateNav() {
   document.getElementById("next-day").disabled = state.viewDate >= today;
 }
 
+// Most recent entry for this exercise strictly before the given date, or null.
+function findLastEntry(exerciseName, beforeDateKey) {
+  const dates = Object.keys(state.data).filter((d) => d < beforeDateKey).sort().reverse();
+  for (const d of dates) {
+    const entries = state.data[d] && state.data[d].entries;
+    const vals = entries && entries[exerciseName];
+    if (vals && vals.some((v) => v !== null && v !== undefined)) return vals;
+  }
+  return null;
+}
+
 function renderWorkout() {
   const weekday = state.viewDate.getDay();
   const workout = WORKOUTS[weekday];
@@ -50,30 +62,43 @@ function renderWorkout() {
 
   const listEl = document.getElementById("exercise-list");
   const saveBar = document.getElementById("save-bar");
+  const noteEl = document.getElementById("day-note");
+  const noteLabel = document.getElementById("note-label");
   listEl.innerHTML = "";
+
+  const existingRecord = state.data[state.selectedDateKey];
 
   if (workout.exercises.length === 0) {
     listEl.innerHTML = `<div class="rest-day">Rest day. Nothing to log 🛌</div>`;
     saveBar.style.display = "none";
+    noteEl.style.display = "none";
+    noteLabel.style.display = "none";
     return;
   }
 
   saveBar.style.display = "block";
-  const existing = (state.data[state.selectedDateKey] && state.data[state.selectedDateKey].entries) || {};
+  noteEl.style.display = "block";
+  noteLabel.style.display = "block";
+  noteEl.value = (existingRecord && existingRecord.note) || "";
+
+  const existing = (existingRecord && existingRecord.entries) || {};
 
   workout.exercises.forEach((ex) => {
     const card = document.createElement("div");
     card.className = "exercise-card";
     const savedSets = existing[ex.name] || [];
+    const lastSets = findLastEntry(ex.name, state.selectedDateKey);
 
     let setsHtml = "";
     for (let i = 0; i < ex.sets; i++) {
       const val = savedSets[i] !== undefined && savedSets[i] !== null ? savedSets[i] : "";
+      const lastVal = lastSets && lastSets[i] !== undefined && lastSets[i] !== null ? lastSets[i] : null;
+      const placeholder = lastVal !== null ? `Last: ${lastVal}` : "lb/kg";
       setsHtml += `
         <div class="set-input">
           <label>Set ${i + 1}</label>
           <input type="number" inputmode="decimal" step="0.5" min="0"
-            data-exercise="${ex.name}" data-set="${i}" value="${val}" placeholder="lb/kg" />
+            data-exercise="${ex.name}" data-set="${i}" value="${val}" placeholder="${placeholder}" />
         </div>
       `;
     }
@@ -122,16 +147,88 @@ function setStatus(msg, cls) {
   el.className = "status" + (cls ? " " + cls : "");
 }
 
+// Week containing `d`, Monday through Sunday, as [mondayDate, sundayDate].
+function weekRange(d) {
+  const day = d.getDay();
+  const diffToMonday = day === 0 ? -6 : 1 - day;
+  const monday = new Date(d);
+  monday.setDate(d.getDate() + diffToMonday);
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  return [monday, sunday];
+}
+
+function renderStreak() {
+  const [monday, sunday] = weekRange(startOfToday());
+  const mondayKey = dateKey(monday);
+  const sundayKey = dateKey(sunday);
+  let count = 0;
+  for (const [d, rec] of Object.entries(state.data)) {
+    if (d < mondayKey || d > sundayKey) continue;
+    const entries = rec.entries || {};
+    const hasAny = Object.values(entries).some((vals) => vals.some((v) => v !== null && v !== undefined));
+    if (hasAny) count++;
+  }
+  document.getElementById("streak-badge").textContent = `This week: ${count}/6 logged`;
+}
+
+function renderWeightBadge() {
+  const dates = Object.keys(state.healthData).sort();
+  const badge = document.getElementById("weight-badge");
+  if (dates.length === 0) {
+    badge.textContent = "";
+    return;
+  }
+  const latestDate = dates[dates.length - 1];
+  const entry = state.healthData[latestDate];
+  if (entry && entry.weight != null) {
+    badge.textContent = `Weight: ${entry.weight} kg (${latestDate})`;
+  } else {
+    badge.textContent = "";
+  }
+}
+
 async function loadData() {
   setStatus("Loading...");
   try {
-    const { data } = await fetchDataFile();
+    const [{ data }, healthRes] = await Promise.all([fetchDataFile(), fetch("/api/health")]);
     state.data = data;
+    state.healthData = healthRes.ok ? await healthRes.json() : {};
     setStatus("");
   } catch (e) {
     setStatus("Could not load data: " + e.message, "err");
   }
   renderWorkout();
+  renderStreak();
+  renderWeightBadge();
+}
+
+// All-time max weight logged for an exercise, excluding the given date.
+function allTimeMax(exerciseName, excludeDateKey) {
+  let max = null;
+  for (const [d, rec] of Object.entries(state.data)) {
+    if (d === excludeDateKey) continue;
+    const vals = rec.entries && rec.entries[exerciseName];
+    if (!vals) continue;
+    vals.forEach((v) => {
+      if (v !== null && v !== undefined && (max === null || v > max)) max = v;
+    });
+  }
+  return max;
+}
+
+function detectPRs(entries, dateKeyForSave) {
+  const prs = [];
+  Object.entries(entries).forEach(([name, vals]) => {
+    const nums = vals.filter((v) => v !== null && v !== undefined);
+    if (nums.length === 0) return;
+    const newMax = Math.max(...nums);
+    const prevMax = allTimeMax(name, dateKeyForSave);
+    if (prevMax === null || newMax > prevMax) {
+      prs.push(`${name} (${newMax})`);
+    }
+  });
+  return prs;
 }
 
 async function saveWorkout() {
@@ -140,12 +237,15 @@ async function saveWorkout() {
   setStatus("Saving...");
   try {
     const entries = collectEntries();
+    const prs = detectPRs(entries, state.selectedDateKey);
     state.data[state.selectedDateKey] = {
       weekday: state.viewDate.getDay(),
       entries,
+      note: document.getElementById("day-note").value.trim(),
     };
     await saveDataFile(state.data);
-    setStatus("Saved ✓", "ok");
+    setStatus("Saved ✓" + (prs.length ? " 🏆 PR: " + prs.join(", ") : ""), "ok");
+    renderStreak();
   } catch (e) {
     setStatus("Save failed: " + e.message, "err");
   } finally {
@@ -158,4 +258,4 @@ document.getElementById("prev-day").onclick = () => changeDay(-1);
 document.getElementById("next-day").onclick = () => changeDay(1);
 document.getElementById("today-btn").onclick = jumpToToday;
 
-loadData();
+window.onUnlock = loadData;

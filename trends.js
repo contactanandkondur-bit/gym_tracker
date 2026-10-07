@@ -104,4 +104,4 @@ async function loadAndRender() {
 }
 
 populateSelect();
-loadAndRender();
+window.onUnlock = loadAndRender;

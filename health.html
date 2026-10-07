@@ -7,12 +7,14 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <script src="auth.js"></script>
   <header>
     <h1>🩺 Health</h1>
     <nav>
       <a href="index.html">Log</a>
       <a href="trends.html">Trends</a>
       <a href="health.html" class="active">Health</a>
+      <button id="backup-btn" title="Download backup">⬇</button>
     </nav>
   </header>
 
@@ -52,6 +54,7 @@
     <div class="save-bar">
       <button class="save-btn" id="save-btn">Save Entry</button>
       <div class="status" id="status"></div>
+      <div id="delta-info"></div>
     </div>
 
     <select id="metric-select">
@@ -69,6 +72,7 @@
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+  <script src="backup.js"></script>
   <script src="health.js"></script>
 </body>
 </html>
