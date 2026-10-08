@@ -445,9 +445,9 @@
         null
       ],
       "Machine Chest Press": [
-        null,
-        null,
-        null
+        30,
+        40,
+        40
       ]
     },
     "note": ""
