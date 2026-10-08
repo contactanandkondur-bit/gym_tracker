@@ -416,9 +416,9 @@
     "weekday": 4,
     "entries": {
       "Incline Barbell Bench Press": [
-        null,
-        null,
-        null
+        10,
+        12.5,
+        12.5
       ],
       "Flat Dumbbell Press": [
         null,
