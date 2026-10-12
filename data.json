@@ -504,8 +504,8 @@
         15
       ],
       "Overhead Barbell Press": [
-        null,
-        null,
+        10,
+        10,
         null
       ],
       "Dumbbell Lateral Raises": [
@@ -519,8 +519,8 @@
         40
       ],
       "Overhead Tricep Extensions": [
-        null,
-        null
+        20,
+        25
       ],
       "Push-Ups": [
         null,
