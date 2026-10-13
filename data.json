@@ -528,5 +528,40 @@
       ]
     },
     "note": ""
+  },
+  "2026-10-13": {
+    "weekday": 2,
+    "entries": {
+      "Leg Press": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Pull-Ups or Lat Pulldown": [
+        35,
+        45,
+        40
+      ],
+      "Barbell Rows": [
+        null,
+        null,
+        null
+      ],
+      "Face Pulls": [
+        null,
+        null
+      ],
+      "Barbell Bicep Curls": [
+        null,
+        null
+      ],
+      "Incline Dumbbell Curls": [
+        null,
+        null,
+        null
+      ]
+    },
+    "note": ""
   }
 }
