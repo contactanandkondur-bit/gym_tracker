@@ -532,8 +532,7 @@
   "2026-10-13": {
     "weekday": 2,
     "entries": {
-      "Leg Press": [
-        null,
+      "Chest-Supported T-Bar Row": [
         null,
         null,
         null
@@ -550,7 +549,8 @@
       ],
       "Face Pulls": [
         35,
-        45
+        45,
+        null
       ],
       "Barbell Bicep Curls": [
         5,
@@ -562,6 +562,6 @@
         null
       ]
     },
-    "note": ""
+    "note": "Biceps pump was awesome. Should have pushed back more"
   }
 }
