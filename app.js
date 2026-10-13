@@ -1,5 +1,6 @@
 const WEEKDAY_LABEL = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTH_LABEL = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const TAG_LABEL = { heavy: "Heavy", moderate: "Moderate", light: "Light", core: "Core" };
 
 let state = {
   data: {},
@@ -104,7 +105,10 @@ function renderWorkout() {
     }
 
     card.innerHTML = `
-      <h3>${ex.name}</h3>
+      <div class="exercise-head">
+        <h3>${ex.name}</h3>
+        ${ex.tag ? `<span class="tag tag-${ex.tag}">${TAG_LABEL[ex.tag]}</span>` : ""}
+      </div>
       <div class="reps">${ex.sets} sets × ${ex.reps}</div>
       <div class="sets-row">${setsHtml}</div>
     `;

@@ -125,10 +125,33 @@ main {
   margin-bottom: 12px;
 }
 
+.exercise-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .exercise-card h3 {
   margin: 0 0 2px;
   font-size: 15px;
 }
+
+.tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tag-heavy { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+.tag-moderate { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+.tag-light { background: rgba(52, 211, 153, 0.15); color: var(--accent2); }
+.tag-core { background: rgba(79, 140, 255, 0.15); color: var(--accent); }
 
 .exercise-card .reps {
   color: var(--muted);
