@@ -27,12 +27,10 @@ const WORKOUTS = {
   },
   3: {
     day: "Wednesday",
-    title: "Legs + Core (Quads, Hams, Core)",
+    title: "Power + Core (Glutes, Full Body, Core)",
     exercises: [
-      { name: "Back Squats", sets: 4, reps: "8-10" },
-      { name: "Hamstring Curls (Machine)", sets: 3, reps: "10-12" },
-      { name: "Leg Press", sets: 2, reps: "12-15" },
-      { name: "Goblet Squats", sets: 3, reps: "12-15" },
+      { name: "Barbell Hip Thrust", sets: 4, reps: "8-12" },
+      { name: "Farmer's Carry", sets: 4, reps: "30-40m" },
       { name: "Hanging Leg Raises", sets: 4, reps: "15-20" },
       { name: "Plank with Side Twists", sets: 3, reps: "20 twists" },
     ],
