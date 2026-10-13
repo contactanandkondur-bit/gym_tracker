@@ -553,12 +553,12 @@
         45
       ],
       "Barbell Bicep Curls": [
-        null,
-        null
+        5,
+        7.5
       ],
       "Incline Dumbbell Curls": [
-        null,
-        null,
+        5,
+        7.5,
         null
       ]
     },
