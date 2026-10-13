@@ -125,27 +125,18 @@ main {
   margin-bottom: 12px;
 }
 
-.exercise-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
 .exercise-card h3 {
-  margin: 0 0 2px;
+  margin: 0 0 6px;
   font-size: 15px;
 }
 
 .tag {
-  font-size: 10px;
+  display: inline-block;
+  font-size: 11px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 3px 9px;
+  padding: 3px 10px;
   border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
+  margin-bottom: 8px;
 }
 
 .tag-heavy { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
