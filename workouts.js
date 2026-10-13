@@ -17,7 +17,7 @@ const WORKOUTS = {
     day: "Tuesday",
     title: "Pull (Back, Biceps, Rear Delts)",
     exercises: [
-      { name: "Leg Press", sets: 4, reps: "10-12" },
+      { name: "Chest-Supported T-Bar Row", sets: 3, reps: "8-10" },
       { name: "Pull-Ups or Lat Pulldown", sets: 3, reps: "8-10" },
       { name: "Barbell Rows", sets: 3, reps: "8-10" },
       { name: "Face Pulls", sets: 2, reps: "12-15" },
@@ -32,7 +32,7 @@ const WORKOUTS = {
       { name: "Back Squats", sets: 4, reps: "8-10" },
       { name: "Hamstring Curls (Machine)", sets: 3, reps: "10-12" },
       { name: "Leg Press", sets: 2, reps: "12-15" },
-      { name: "Walking Lunges", sets: 3, reps: "12-15/leg" },
+      { name: "Goblet Squats", sets: 3, reps: "12-15" },
       { name: "Hanging Leg Raises", sets: 4, reps: "15-20" },
       { name: "Plank with Side Twists", sets: 3, reps: "20 twists" },
     ],
@@ -55,7 +55,7 @@ const WORKOUTS = {
     title: "Full Arms + Shoulders",
     exercises: [
       { name: "Cable Tricep Pushdown", sets: 3, reps: "8-10" },
-      { name: "Skull Crushers (EZ Bar)", sets: 3, reps: "10-12" },
+      { name: "Close-Grip Bench Press", sets: 3, reps: "8-10" },
       { name: "Preacher Curls", sets: 2, reps: "10-12" },
       { name: "Incline Dumbbell Curls", sets: 2, reps: "8-10" },
       { name: "Hammer Curls", sets: 2, reps: "10-12" },
@@ -68,7 +68,7 @@ const WORKOUTS = {
     title: "Legs + Core (Lower Body + Core)",
     exercises: [
       { name: "Front Squats", sets: 3, reps: "8-10" },
-      { name: "Bulgarian Split Squats", sets: 3, reps: "12-15/leg" },
+      { name: "Goblet Squats", sets: 3, reps: "12-15" },
       { name: "Leg Extension (Machine)", sets: 2, reps: "12-15" },
       { name: "Hamstring Curls (Machine)", sets: 3, reps: "10-12" },
       { name: "Standing Calf Raises", sets: 4, reps: "15-20" },
