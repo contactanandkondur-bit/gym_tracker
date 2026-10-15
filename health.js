@@ -1,4 +1,5 @@
 let healthData = {};
+let wholeHealth = {};
 let chart = null;
 
 const FIELDS = [
@@ -129,7 +130,16 @@ async function loadAll() {
   try {
     const res = await fetch("/api/health");
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-    healthData = await res.json();
+    wholeHealth = await res.json();
+    if (isLegacyFlatObject(wholeHealth)) {
+      wholeHealth = { [window.currentProfile.emailKey]: wholeHealth };
+      await fetch("/api/health", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(wholeHealth),
+      });
+    }
+    healthData = getProfileSlice(wholeHealth, window.currentProfile.emailKey);
     setStatus("");
   } catch (e) {
     setStatus("Could not load data: " + e.message, "err");
@@ -145,10 +155,11 @@ async function saveEntry() {
   try {
     const dateStr = document.getElementById("h-date").value;
     healthData[dateStr] = collectForm();
+    wholeHealth = setProfileSlice(wholeHealth, window.currentProfile.emailKey, healthData);
     const res = await fetch("/api/health", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(healthData),
+      body: JSON.stringify(wholeHealth),
     });
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
     setStatus("Saved ✓", "ok");

@@ -9,7 +9,9 @@ const TAG_LABEL = {
 
 let state = {
   data: {},
+  wholeData: {},
   healthData: {},
+  wholeHealth: {},
   viewDate: startOfToday(),
   selectedDateKey: null,
 };
@@ -75,7 +77,7 @@ function renderWorkout() {
   const existingRecord = state.data[state.selectedDateKey];
 
   if (workout.exercises.length === 0) {
-    listEl.innerHTML = `<div class="rest-day">Rest day. Nothing to log 🛌</div>`;
+    listEl.innerHTML = weekday === 0 ? renderWeeklyRecapHtml() : `<div class="rest-day">Rest day. Nothing to log 🛌</div>`;
     saveBar.style.display = "none";
     noteEl.style.display = "none";
     noteLabel.style.display = "none";
@@ -198,9 +200,27 @@ function renderWeightBadge() {
 async function loadData() {
   setStatus("Loading...");
   try {
-    const [{ data }, healthRes] = await Promise.all([fetchDataFile(), fetch("/api/health")]);
-    state.data = data;
-    state.healthData = healthRes.ok ? await healthRes.json() : {};
+    const profileKey = window.currentProfile.emailKey;
+    const [{ data: wholeData }, healthRes] = await Promise.all([fetchDataFile(), fetch("/api/health")]);
+    let wData = wholeData;
+    if (isLegacyFlatObject(wData)) {
+      wData = { [profileKey]: wData };
+      await saveDataFile(wData);
+    }
+    state.wholeData = wData;
+    state.data = getProfileSlice(wData, profileKey);
+
+    let wHealth = healthRes.ok ? await healthRes.json() : {};
+    if (isLegacyFlatObject(wHealth)) {
+      wHealth = { [profileKey]: wHealth };
+      await fetch("/api/health", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(wHealth),
+      });
+    }
+    state.wholeHealth = wHealth;
+    state.healthData = getProfileSlice(wHealth, profileKey);
     setStatus("");
   } catch (e) {
     setStatus("Could not load data: " + e.message, "err");
@@ -222,6 +242,111 @@ function allTimeMax(exerciseName, excludeDateKey) {
     });
   }
   return max;
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// Approximate reps from a workout's target range (we only track weight per
+// set, not actual reps performed). Returns null for non-numeric/time-based
+// reps (e.g. "Failure", "30-40m") which can't be used for a volume estimate.
+function repsMidpoint(repsStr) {
+  if (!repsStr) return null;
+  if (/failure/i.test(repsStr)) return null;
+  if (/m$/i.test(repsStr.trim())) return null;
+  const match = repsStr.match(/(\d+(?:\.\d+)?)(?:\s*-\s*(\d+(?:\.\d+)?))?/);
+  if (!match) return null;
+  const a = parseFloat(match[1]);
+  const b = match[2] !== undefined ? parseFloat(match[2]) : a;
+  return (a + b) / 2;
+}
+
+// Stats for the Mon-Sat week ending the day before `sundayDate`.
+function computeWeekRecap(sundayDate) {
+  const dates = [];
+  for (let i = 6; i >= 1; i--) {
+    const d = new Date(sundayDate);
+    d.setDate(d.getDate() - i);
+    dates.push(dateKey(d));
+  }
+
+  let workoutsLogged = 0;
+  const prs = [];
+  let totalVolume = 0;
+  const notes = [];
+
+  dates.forEach((dk) => {
+    const rec = state.data[dk];
+    if (!rec) return;
+    const entries = rec.entries || {};
+    const hasAny = Object.values(entries).some((vals) => vals.some((v) => v !== null && v !== undefined));
+    if (hasAny) workoutsLogged++;
+
+    const workout = WORKOUTS[rec.weekday];
+    Object.entries(entries).forEach(([name, vals]) => {
+      const nums = vals.filter((v) => v !== null && v !== undefined);
+      if (nums.length === 0) return;
+
+      const newMax = Math.max(...nums);
+      const prevMax = allTimeMax(name, dk);
+      if (prevMax === null || newMax > prevMax) {
+        prs.push({ date: dk, name, weight: newMax });
+      }
+
+      const exDef = workout && workout.exercises.find((e) => e.name === name);
+      const mid = exDef ? repsMidpoint(exDef.reps) : null;
+      if (mid !== null) {
+        nums.forEach((w) => { totalVolume += w * mid; });
+      }
+    });
+
+    if (rec.note) {
+      notes.push({ day: WEEKDAY_LABEL[rec.weekday], date: dk, note: rec.note });
+    }
+  });
+
+  return { workoutsLogged, prs, totalVolume, notes };
+}
+
+function renderWeeklyRecapHtml() {
+  const recap = computeWeekRecap(state.viewDate);
+  const volumeStr = Math.round(recap.totalVolume).toLocaleString();
+
+  const prHtml = recap.prs.length
+    ? recap.prs.map((p) => `<li>🏆 ${escapeHtml(p.name)} — ${p.weight} (${p.date})</li>`).join("")
+    : `<li class="muted-li">No new PRs this week</li>`;
+
+  const notesHtml = recap.notes.length
+    ? recap.notes.map((n) => `<div class="recap-note"><strong>${n.day}:</strong> ${escapeHtml(n.note)}</div>`).join("")
+    : `<div class="muted-li">No notes written this week</div>`;
+
+  return `
+    <div class="recap">
+      <h2>Week Recap 🎉</h2>
+      <div class="recap-stats">
+        <div class="recap-stat">
+          <div class="recap-stat-value">${recap.workoutsLogged}/6</div>
+          <div class="recap-stat-label">Workouts logged</div>
+        </div>
+        <div class="recap-stat">
+          <div class="recap-stat-value">${recap.prs.length}</div>
+          <div class="recap-stat-label">New PRs</div>
+        </div>
+        <div class="recap-stat">
+          <div class="recap-stat-value">${volumeStr}</div>
+          <div class="recap-stat-label">Est. volume (kg)</div>
+        </div>
+      </div>
+      <h3>PRs this week</h3>
+      <ul class="recap-list">${prHtml}</ul>
+      <h3>Your notes this week</h3>
+      <div class="recap-notes">${notesHtml}</div>
+      <p class="recap-footer">Rest day — read this, then get after it Monday 💪</p>
+    </div>
+  `;
 }
 
 function detectPRs(entries, dateKeyForSave) {
@@ -250,7 +375,8 @@ async function saveWorkout() {
       entries,
       note: document.getElementById("day-note").value.trim(),
     };
-    await saveDataFile(state.data);
+    state.wholeData = setProfileSlice(state.wholeData, window.currentProfile.emailKey, state.data);
+    await saveDataFile(state.wholeData);
     setStatus("Saved ✓" + (prs.length ? " 🏆 PR: " + prs.join(", ") : ""), "ok");
     renderStreak();
   } catch (e) {

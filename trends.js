@@ -90,8 +90,12 @@ function populateSelect() {
 
 async function loadAndRender() {
   try {
-    const { data } = await fetchDataFile();
-    allData = data;
+    let { data: wholeData } = await fetchDataFile();
+    if (isLegacyFlatObject(wholeData)) {
+      wholeData = { [window.currentProfile.emailKey]: wholeData };
+      await saveDataFile(wholeData);
+    }
+    allData = getProfileSlice(wholeData, window.currentProfile.emailKey);
   } catch (e) {
     document.getElementById("empty").textContent = "Could not load data from GitHub: " + e.message;
     document.getElementById("empty").style.display = "block";
