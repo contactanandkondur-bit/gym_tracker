@@ -563,5 +563,74 @@
       ]
     },
     "note": "Biceps pump was awesome. Should have pushed back more"
+  },
+  "2026-10-14": {
+    "weekday": 3,
+    "entries": {
+      "Barbell Hip Thrust": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Farmer's Carry": [
+        2,
+        2,
+        null,
+        null
+      ],
+      "Hanging Leg Raises": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "Plank with Side Twists": [
+        null,
+        null,
+        null
+      ]
+    },
+    "note": "Did few others exercises like shrugs , rear delts and forearms... \nDid leg rises ..."
+  },
+  "2026-10-15": {
+    "weekday": 4,
+    "entries": {
+      "Incline Barbell Bench Press": [
+        12.5,
+        15,
+        15
+      ],
+      "Flat Dumbbell Press": [
+        12.5,
+        15
+      ],
+      "Pull-Ups (Weighted if needed)": [
+        65,
+        60,
+        65,
+        60
+      ],
+      "Seated Cable Row": [
+        45,
+        39,
+        39
+      ],
+      "Dumbbell Chest Flys": [
+        7.5,
+        10,
+        7.5
+      ],
+      "Cable Lat Pullover": [
+        null,
+        null
+      ],
+      "Machine Chest Press": [
+        35,
+        40,
+        40
+      ]
+    },
+    "note": "Didn't want to go to gym but went ... had a good workout but I think I should push chest more"
   }
 }
