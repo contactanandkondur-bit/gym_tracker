@@ -643,13 +643,13 @@
           40
         ],
         "Close-Grip Bench Press": [
-          null,
-          null,
+          10,
+          15,
           null
         ],
         "Preacher Curls": [
-          null,
-          null
+          7.5,
+          10
         ],
         "Incline Dumbbell Curls": [
           null,
