@@ -633,6 +633,46 @@
         ]
       },
       "note": "Didn't want to go to gym but went ... had a good workout but I think I should push chest more"
+    },
+    "2026-10-16": {
+      "weekday": 5,
+      "entries": {
+        "Cable Tricep Pushdown": [
+          35,
+          40,
+          40
+        ],
+        "Close-Grip Bench Press": [
+          null,
+          null,
+          null
+        ],
+        "Preacher Curls": [
+          null,
+          null
+        ],
+        "Incline Dumbbell Curls": [
+          null,
+          null
+        ],
+        "Hammer Curls": [
+          null,
+          null
+        ],
+        "Dumbbell Lateral Raises": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "Face Pulls": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "note": ""
     }
   }
 }
