@@ -673,6 +673,46 @@
         ]
       },
       "note": "Felt really good,  arms pump was really goodb"
+    },
+    "2026-10-22": {
+      "weekday": 4,
+      "entries": {
+        "Incline Barbell Bench Press": [
+          null,
+          null,
+          null
+        ],
+        "Flat Dumbbell Press": [
+          null,
+          null
+        ],
+        "Pull-Ups (Weighted if needed)": [
+          65,
+          60,
+          65,
+          60
+        ],
+        "Seated Cable Row": [
+          null,
+          null,
+          null
+        ],
+        "Dumbbell Chest Flys": [
+          null,
+          null,
+          null
+        ],
+        "Cable Lat Pullover": [
+          null,
+          null
+        ],
+        "Machine Chest Press": [
+          null,
+          null,
+          null
+        ]
+      },
+      "note": ""
     }
   }
 }
