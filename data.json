@@ -713,6 +713,46 @@
         ]
       },
       "note": "Didn't have much energy , but pushed through the workout"
+    },
+    "2026-10-23": {
+      "weekday": 5,
+      "entries": {
+        "Cable Tricep Pushdown": [
+          35,
+          40,
+          45
+        ],
+        "Close-Grip Bench Press": [
+          null,
+          null,
+          null
+        ],
+        "Preacher Curls": [
+          null,
+          null
+        ],
+        "Incline Dumbbell Curls": [
+          null,
+          null
+        ],
+        "Hammer Curls": [
+          null,
+          null
+        ],
+        "Dumbbell Lateral Raises": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "Face Pulls": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "note": ""
     }
   }
 }
