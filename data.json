@@ -753,6 +753,58 @@
         ]
       },
       "note": "The arms pump was less today dunno the reason lifted well"
+    },
+    "2026-10-24": {
+      "weekday": 6,
+      "entries": {
+        "Front Squats": [
+          null,
+          null,
+          null
+        ],
+        "Goblet Squats": [
+          null,
+          null,
+          null
+        ],
+        "Leg Extension (Machine)": [
+          35,
+          40
+        ],
+        "Hamstring Curls (Machine)": [
+          null,
+          null,
+          null
+        ],
+        "Seated Leg Curl": [
+          null,
+          null,
+          null
+        ],
+        "Standing Calf Raises": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "Seated Calf Raises": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "Cable Woodchoppers": [
+          null,
+          null,
+          null
+        ],
+        "Weighted Decline Sit-Ups": [
+          null,
+          null,
+          null
+        ]
+      },
+      "note": ""
     }
   }
 }
