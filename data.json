@@ -848,9 +848,9 @@
       "weekday": 2,
       "entries": {
         "Chest-Supported T-Bar Row": [
-          null,
-          null,
-          null
+          12.5,
+          15,
+          15
         ],
         "Pull-Ups or Lat Pulldown": [
           35,
