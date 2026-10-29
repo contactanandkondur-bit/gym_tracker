@@ -843,6 +843,41 @@
         ]
       },
       "note": ""
+    },
+    "2026-10-27": {
+      "weekday": 2,
+      "entries": {
+        "Chest-Supported T-Bar Row": [
+          null,
+          null,
+          null
+        ],
+        "Pull-Ups or Lat Pulldown": [
+          35,
+          45,
+          50
+        ],
+        "Barbell Rows": [
+          null,
+          null,
+          null
+        ],
+        "Face Pulls": [
+          null,
+          null,
+          null
+        ],
+        "Barbell Bicep Curls": [
+          null,
+          null
+        ],
+        "Incline Dumbbell Curls": [
+          null,
+          null,
+          null
+        ]
+      },
+      "note": ""
     }
   }
 }
