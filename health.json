@@ -23,6 +23,14 @@
       "bodyFatPct": 35.2,
       "bmi": 31,
       "whr": 0.98
+    },
+    "2026-10-29": {
+      "weight": 92.8,
+      "smm": null,
+      "fatMass": null,
+      "bodyFatPct": null,
+      "bmi": null,
+      "whr": null
     }
   }
 }
