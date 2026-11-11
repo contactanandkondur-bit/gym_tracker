@@ -43,7 +43,6 @@ function renderDateNav() {
   document.getElementById("date-label").textContent =
     (isToday ? "Today · " : "") + formatDateLabel(state.viewDate);
   document.getElementById("today-btn").style.display = isToday ? "none" : "inline";
-  document.getElementById("next-day").disabled = state.viewDate >= today;
 }
 
 // Most recent entry for this exercise strictly before the given date, or null.
@@ -65,7 +64,7 @@ function renderWorkout() {
   renderDateNav();
 
   document.getElementById("day-title").innerHTML = `
-    <h2>${workout.day} – ${workout.title}</h2>
+    <h2>${workout.day}${workout.title ? " – " + workout.title : ""}</h2>
   `;
 
   const listEl = document.getElementById("exercise-list");
@@ -124,7 +123,6 @@ function renderWorkout() {
 function changeDay(delta) {
   const d = new Date(state.viewDate);
   d.setDate(d.getDate() + delta);
-  if (d > startOfToday()) return; // can't log future days
   state.viewDate = d;
   renderWorkout();
 }
@@ -178,7 +176,7 @@ function renderStreak() {
     const hasAny = Object.values(entries).some((vals) => vals.some((v) => v !== null && v !== undefined));
     if (hasAny) count++;
   }
-  document.getElementById("streak-badge").textContent = `This week: ${count}/6 logged`;
+  document.getElementById("streak-badge").textContent = `This week: ${count}/4 logged`;
 }
 
 function renderWeightBadge() {
@@ -304,7 +302,7 @@ function computeWeekRecap(sundayDate) {
     });
 
     if (rec.note) {
-      notes.push({ day: WEEKDAY_LABEL[rec.weekday], date: dk, note: rec.note });
+      notes.push({ day: workout ? workout.day : "", date: dk, note: rec.note });
     }
   });
 
@@ -328,7 +326,7 @@ function renderWeeklyRecapHtml() {
       <h2>Week Recap 🎉</h2>
       <div class="recap-stats">
         <div class="recap-stat">
-          <div class="recap-stat-value">${recap.workoutsLogged}/6</div>
+          <div class="recap-stat-value">${recap.workoutsLogged}/4</div>
           <div class="recap-stat-label">Workouts logged</div>
         </div>
         <div class="recap-stat">
@@ -344,7 +342,7 @@ function renderWeeklyRecapHtml() {
       <ul class="recap-list">${prHtml}</ul>
       <h3>Your notes this week</h3>
       <div class="recap-notes">${notesHtml}</div>
-      <p class="recap-footer">Rest day — read this, then get after it Monday 💪</p>
+      <p class="recap-footer">Rest day — read this, then get after Day 1 💪</p>
     </div>
   `;
 }

@@ -23,15 +23,15 @@
           null,
           null
         ],
-        "Cable Tricep Pushdowns": [
-          null,
-          null
-        ],
         "Overhead Tricep Extensions": [
           null,
           null
         ],
         "Push-Ups": [
+          null,
+          null
+        ],
+        "Cable Tricep Pushdown": [
           null,
           null
         ]
@@ -132,15 +132,15 @@
           null,
           null
         ],
-        "Cable Tricep Pushdowns": [
-          null,
-          null
-        ],
         "Overhead Tricep Extensions": [
           null,
           null
         ],
         "Push-Ups": [
+          null,
+          null
+        ],
+        "Cable Tricep Pushdown": [
           null,
           null
         ]
@@ -169,15 +169,15 @@
           null,
           null
         ],
-        "Cable Tricep Pushdowns": [
-          null,
-          null
-        ],
         "Overhead Tricep Extensions": [
           null,
           null
         ],
         "Push-Ups": [
+          null,
+          null
+        ],
+        "Cable Tricep Pushdown": [
           null,
           null
         ]
@@ -206,15 +206,15 @@
           null,
           null
         ],
-        "Cable Tricep Pushdowns": [
-          null,
-          null
-        ],
         "Overhead Tricep Extensions": [
           null,
           null
         ],
         "Push-Ups": [
+          null,
+          null
+        ],
+        "Cable Tricep Pushdown": [
           null,
           null
         ]
@@ -365,10 +365,6 @@
           2.5,
           2.5
         ],
-        "Cable Tricep Pushdowns": [
-          35,
-          40
-        ],
         "Overhead Tricep Extensions": [
           15,
           20
@@ -376,6 +372,10 @@
         "Push-Ups": [
           5,
           0
+        ],
+        "Cable Tricep Pushdown": [
+          35,
+          40
         ]
       }
     },
@@ -515,10 +515,6 @@
           5,
           7.5
         ],
-        "Cable Tricep Pushdowns": [
-          45,
-          40
-        ],
         "Overhead Tricep Extensions": [
           20,
           25
@@ -526,6 +522,10 @@
         "Push-Ups": [
           null,
           null
+        ],
+        "Cable Tricep Pushdown": [
+          45,
+          40
         ]
       },
       "note": ""
@@ -829,10 +829,6 @@
           5,
           5
         ],
-        "Cable Tricep Pushdowns": [
-          45,
-          50
-        ],
         "Overhead Tricep Extensions": [
           20,
           20
@@ -840,6 +836,10 @@
         "Push-Ups": [
           null,
           null
+        ],
+        "Cable Tricep Pushdown": [
+          45,
+          50
         ]
       },
       "note": ""
