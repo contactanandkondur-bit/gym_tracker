@@ -1,10 +1,18 @@
 let chart = null;
 let allData = {};
 
+// Every exercise ever named in any schedule version, plus anything found in
+// actually-logged history — so nothing drops out of Trends just because the
+// program changed. Historical numbers stay visible forever.
 function allExerciseNames() {
   const names = new Set();
-  Object.values(WORKOUTS).forEach((w) => w.exercises.forEach((e) => names.add(e.name)));
-  return Array.from(names);
+  SCHEDULE_VERSIONS.forEach(({ workouts }) => {
+    Object.values(workouts).forEach((w) => w.exercises.forEach((e) => names.add(e.name)));
+  });
+  Object.values(allData).forEach((rec) => {
+    Object.keys(rec.entries || {}).forEach((name) => names.add(name));
+  });
+  return Array.from(names).sort();
 }
 
 function buildSeries(exerciseName) {

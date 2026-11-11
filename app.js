@@ -58,8 +58,8 @@ function findLastEntry(exerciseName, beforeDateKey) {
 
 function renderWorkout() {
   const weekday = state.viewDate.getDay();
-  const workout = WORKOUTS[weekday];
   state.selectedDateKey = dateKey(state.viewDate);
+  const workout = getWorkoutsForDate(state.selectedDateKey)[weekday];
 
   renderDateNav();
 
@@ -134,7 +134,7 @@ function jumpToToday() {
 
 function collectEntries() {
   const weekday = state.viewDate.getDay();
-  const workout = WORKOUTS[weekday];
+  const workout = getWorkoutsForDate(state.selectedDateKey)[weekday];
   const entries = {};
   workout.exercises.forEach((ex) => {
     const values = [];
@@ -165,6 +165,10 @@ function weekRange(d) {
   return [monday, sunday];
 }
 
+function countTrainingDays(workouts) {
+  return Object.values(workouts).filter((w) => w.exercises.length > 0).length;
+}
+
 function renderStreak() {
   const [monday, sunday] = weekRange(startOfToday());
   const mondayKey = dateKey(monday);
@@ -176,7 +180,8 @@ function renderStreak() {
     const hasAny = Object.values(entries).some((vals) => vals.some((v) => v !== null && v !== undefined));
     if (hasAny) count++;
   }
-  document.getElementById("streak-badge").textContent = `This week: ${count}/4 logged`;
+  const total = countTrainingDays(getWorkoutsForDate(dateKey(startOfToday())));
+  document.getElementById("streak-badge").textContent = `This week: ${count}/${total} logged`;
 }
 
 function renderWeightBadge() {
@@ -283,7 +288,7 @@ function computeWeekRecap(sundayDate) {
     const hasAny = Object.values(entries).some((vals) => vals.some((v) => v !== null && v !== undefined));
     if (hasAny) workoutsLogged++;
 
-    const workout = WORKOUTS[rec.weekday];
+    const workout = getWorkoutsForDate(dk)[rec.weekday];
     Object.entries(entries).forEach(([name, vals]) => {
       const nums = vals.filter((v) => v !== null && v !== undefined);
       if (nums.length === 0) return;
@@ -306,7 +311,8 @@ function computeWeekRecap(sundayDate) {
     }
   });
 
-  return { workoutsLogged, prs, totalVolume, notes };
+  const totalTrainingDays = countTrainingDays(getWorkoutsForDate(dateKey(sundayDate)));
+  return { workoutsLogged, totalTrainingDays, prs, totalVolume, notes };
 }
 
 function renderWeeklyRecapHtml() {
@@ -326,7 +332,7 @@ function renderWeeklyRecapHtml() {
       <h2>Week Recap 🎉</h2>
       <div class="recap-stats">
         <div class="recap-stat">
-          <div class="recap-stat-value">${recap.workoutsLogged}/4</div>
+          <div class="recap-stat-value">${recap.workoutsLogged}/${recap.totalTrainingDays}</div>
           <div class="recap-stat-label">Workouts logged</div>
         </div>
         <div class="recap-stat">
