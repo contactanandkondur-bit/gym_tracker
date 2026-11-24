@@ -921,6 +921,49 @@
         ]
       },
       "note": ""
+    },
+    "2026-11-23": {
+      "weekday": 1,
+      "entries": {
+        "Flat Dumbbell Press": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "T-Bar Row": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "Seated Dumbbell Shoulder Press": [
+          null,
+          null,
+          null
+        ],
+        "Lat Pulldown (wide grip)": [
+          45,
+          null,
+          null
+        ],
+        "Dumbbell Lateral Raises": [
+          null,
+          null,
+          null
+        ],
+        "EZ Bar Curl": [
+          null,
+          null,
+          null
+        ],
+        "Cable Tricep Pushdown": [
+          null,
+          null,
+          null
+        ]
+      },
+      "note": ""
     }
   }
 }
