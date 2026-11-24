@@ -926,10 +926,10 @@
       "weekday": 1,
       "entries": {
         "Flat Dumbbell Press": [
-          null,
-          null,
-          null,
-          null
+          12.5,
+          15,
+          17.5,
+          17.5
         ],
         "T-Bar Row": [
           35,
